@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Consulta de Titulo - SENESCYT</title>
+  <style>
+    :root {
+      --bg: #f3f5f8;
+      --card: #ffffff;
+      --ink: #11263c;
+      --muted: #5f7287;
+      --brand: #1163ad;
+      --brand-dark: #0b4e8a;
+      --line: #d8e0e8;
+      --ok: #2f7a49;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 20% -10%, #d7e7f5 0%, transparent 40%),
+        radial-gradient(circle at 90% 0%, #e7edf6 0%, transparent 35%),
+        var(--bg);
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+    .topbar {
+      background: linear-gradient(90deg, var(--brand-dark), var(--brand));
+      color: #fff;
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 8px 20px rgba(17, 38, 60, .16);
+    }
+    .topbar h1 {
+      margin: 0;
+      font-size: clamp(1.1rem, 2.8vw, 1.5rem);
+      letter-spacing: .2px;
+      font-weight: 700;
+    }
+    .panel {
+      margin-top: 14px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(17, 38, 60, .08);
+      overflow: hidden;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfdff;
+    }
+    .field {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: #fff;
+    }
+    .label {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .55px;
+      color: var(--muted);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .value {
+      font-size: .98rem;
+      font-weight: 600;
+    }
+    .ok {
+      color: var(--ok);
+      font-weight: 700;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      font-size: .92rem;
+      transition: .2s ease;
+    }
+    .btn.primary {
+      background: var(--brand);
+      color: #fff;
+    }
+    .btn.primary:hover { background: var(--brand-dark); }
+    .btn.ghost {
+      color: var(--brand-dark);
+      border-color: #b8cde1;
+      background: #eef5fb;
+    }
+    .btn.ghost:hover { background: #e3eef9; }
+    .viewer {
+      padding: 12px;
+    }
+    iframe {
+      width: 100%;
+      height: min(78vh, 900px);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+    }
+    .note {
+      padding: 0 16px 16px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="topbar">
+      <h1>Consulta de Titulo - SENESCYT (Replica de visualizacion)</h1>
+    </section>
+
+    <section class="panel">
+      <div class="meta">
+        <div class="field">
+          <div class="label">Documento</div>
+          <div class="value">1312149683</div>
+        </div>
+        <div class="field">
+          <div class="label">Tipo</div>
+          <div class="value">Cedula</div>
+        </div>
+        <div class="field">
+          <div class="label">Estado</div>
+          <div class="value ok">Documento cargado</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href="Titulo_1312149683.pdf" target="_blank" rel="noopener">Abrir PDF en nueva pestana</a>
+        <a class="btn ghost" href="Titulo_1312149683.pdf" download>Descargar PDF</a>
+      </div>
+
+      <div class="viewer">
+        <iframe src="Titulo_1312149683.pdf#view=FitH" title="Titulo 1312149683"></iframe>
+      </div>
+      <p class="note">
+        Esta pagina es una replica visual para exponer el documento en un enlace publico. No es un endpoint oficial de SENESCYT.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
