@@ -3,166 +3,439 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Consulta de Titulo - SENESCYT</title>
+  <title>Consulta de Titulos Registrados - Replica</title>
   <style>
     :root {
-      --bg: #f3f5f8;
-      --card: #ffffff;
-      --ink: #11263c;
-      --muted: #5f7287;
-      --brand: #1163ad;
-      --brand-dark: #0b4e8a;
-      --line: #d8e0e8;
-      --ok: #2f7a49;
+      --page-bg: #c7c6d8;
+      --surface: #e9e9e9;
+      --ink: #1f2a39;
+      --muted: #3a3a3a;
+      --purple: #322a77;
+      --purple-soft: #7d78a7;
+      --line: #cfcfcf;
+      --warn-bg: #f9efbe;
+      --warn-line: #2d70af;
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--page-bg);
       color: var(--ink);
-      background:
-        radial-gradient(circle at 20% -10%, #d7e7f5 0%, transparent 40%),
-        radial-gradient(circle at 90% 0%, #e7edf6 0%, transparent 35%),
-        var(--bg);
-      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      line-height: 1.4;
     }
-    .wrap {
-      max-width: 1050px;
+
+    .hero {
+      background: var(--purple);
+      min-height: 98px;
+      color: #fff;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 20px 16px 40px;
-    }
-    .topbar {
-      background: linear-gradient(90deg, var(--brand-dark), var(--brand));
-      color: #fff;
-      border-radius: 12px;
-      padding: 18px 20px;
-      box-shadow: 0 8px 20px rgba(17, 38, 60, .16);
-    }
-    .topbar h1 {
-      margin: 0;
-      font-size: clamp(1.1rem, 2.8vw, 1.5rem);
-      letter-spacing: .2px;
-      font-weight: 700;
-    }
-    .panel {
-      margin-top: 14px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(17, 38, 60, .08);
-      overflow: hidden;
-    }
-    .meta {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 10px;
-      padding: 16px;
-      border-bottom: 1px solid var(--line);
-      background: #fbfdff;
-    }
-    .field {
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 10px 12px;
-      background: #fff;
-    }
-    .label {
-      font-size: .75rem;
-      text-transform: uppercase;
-      letter-spacing: .55px;
-      color: var(--muted);
-      margin-bottom: 4px;
-      font-weight: 600;
-    }
-    .value {
-      font-size: .98rem;
-      font-weight: 600;
-    }
-    .ok {
-      color: var(--ok);
-      font-weight: 700;
-    }
-    .actions {
+      min-height: 98px;
+      padding: 18px 24px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--line);
-    }
-    .btn {
-      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      border-radius: 10px;
-      padding: 10px 14px;
-      border: 1px solid transparent;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .hero-left {
+      font-style: italic;
+      font-size: 33px;
+      letter-spacing: 0.4px;
       font-weight: 600;
-      font-size: .92rem;
-      transition: .2s ease;
+      line-height: 1.05;
     }
-    .btn.primary {
-      background: var(--brand);
+
+    .hero-right {
+      font-style: italic;
+      font-size: 44px;
+      letter-spacing: 0.6px;
+      font-weight: 700;
+      opacity: 0.95;
+      white-space: nowrap;
+    }
+
+    .frame {
+      max-width: 1120px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-left: 1px solid #d4d4d4;
+      border-right: 1px solid #d4d4d4;
+      min-height: calc(100vh - 98px);
+      padding-bottom: 18px;
+    }
+
+    .nav {
+      margin: 10px 22px 0;
+      background: var(--purple);
+      border-radius: 4px;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      padding: 0 24px;
       color: #fff;
+      font-size: 29px;
     }
-    .btn.primary:hover { background: var(--brand-dark); }
-    .btn.ghost {
-      color: var(--brand-dark);
-      border-color: #b8cde1;
-      background: #eef5fb;
+
+    .container {
+      margin: 2px 22px 0;
+      border: 1px solid #c8c8c8;
+      background: var(--surface);
+      padding: 16px 20px 20px;
     }
-    .btn.ghost:hover { background: #e3eef9; }
+
+    h1 {
+      margin: 8px 0 6px;
+      font-size: 42px;
+      color: #19273b;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hr {
+      height: 1px;
+      background: #929292;
+      margin: 0 0 12px;
+    }
+
+    .search-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    .search-card {
+      border: 1px solid #c9c9c9;
+      background: #ececec;
+      padding: 14px;
+    }
+
+    .field-label {
+      font-weight: 700;
+      margin: 0 0 4px;
+      font-size: 17px;
+    }
+
+    .input {
+      width: 100%;
+      height: 38px;
+      border: 1px solid #c6c6c6;
+      border-radius: 3px;
+      background: #f6f6f6;
+      padding: 6px 10px;
+      color: #6b6b6b;
+      font-size: 19px;
+    }
+
+    .captcha-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 6px;
+      align-items: center;
+    }
+
+    .captcha-box {
+      width: 210px;
+      height: 54px;
+      background: #000;
+      color: #f7d9c3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 47px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: lowercase;
+    }
+
+    .btn {
+      margin-top: 12px;
+      height: 43px;
+      width: 180px;
+      border: none;
+      background: var(--purple-soft);
+      color: #fff;
+      font-size: 23px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .alerts {
+      display: grid;
+      gap: 12px;
+    }
+
+    .alert {
+      border: 3px solid var(--warn-line);
+      background: var(--warn-bg);
+      padding: 12px 14px;
+      color: #1f2a3a;
+      font-size: 17px;
+    }
+
+    .alert strong {
+      display: block;
+      color: #1d5f9d;
+      margin-bottom: 4px;
+      font-size: 18px;
+    }
+
+    .section {
+      margin-top: 16px;
+      border: 1px solid #4f77a5;
+      background: #f1f1f1;
+    }
+
+    .section-title {
+      background: var(--purple);
+      color: #fff;
+      padding: 10px 18px;
+      font-size: 39px;
+    }
+
+    .section-body {
+      padding: 14px;
+      border-top: 1px solid #dedede;
+    }
+
+    .personal {
+      border: 1px solid #cbcbcb;
+      background: #ececec;
+      padding: 16px 20px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      font-size: 19px;
+    }
+
+    .personal p {
+      margin: 8px 0;
+      font-weight: 700;
+    }
+
+    .personal .value {
+      font-weight: 700;
+      margin-left: 18px;
+    }
+
+    .print-btn {
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      width: 200px;
+      height: 44px;
+      font-size: 23px;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ececec;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid #c5c5c5;
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #efefef;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .viewer-wrap {
+      margin-top: 16px;
+      border: 1px solid #4f77a5;
+      background: #f1f1f1;
+    }
+
+    .viewer-title {
+      background: var(--purple);
+      color: #fff;
+      padding: 10px 18px;
+      font-size: 39px;
+    }
+
     .viewer {
-      padding: 12px;
+      padding: 14px;
     }
+
     iframe {
       width: 100%;
-      height: min(78vh, 900px);
-      border: 1px solid var(--line);
-      border-radius: 10px;
+      height: 74vh;
+      border: 1px solid #c6c6c6;
       background: #fff;
     }
-    .note {
-      padding: 0 16px 16px;
-      color: var(--muted);
-      font-size: .9rem;
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      padding: 0 14px 14px;
+      flex-wrap: wrap;
+    }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 16px;
+      border: 1px solid #4e76a4;
+      color: #1f2a3a;
+      background: #ffffff;
+    }
+
+    .foot {
+      margin: 16px 22px 0;
+      border-top: 4px solid #c5c5c5;
+      padding: 14px 0 0;
+      color: #2f2f2f;
+      text-align: center;
+      font-size: 17px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-left { font-size: 22px; }
+      .hero-right { font-size: 28px; }
+      .nav { font-size: 20px; gap: 18px; }
+      h1 { font-size: 31px; }
+      .section-title, .viewer-title { font-size: 28px; }
+      .search-grid { grid-template-columns: 1fr; }
+      .personal { grid-template-columns: 1fr; }
+      .btn, .print-btn { width: 100%; max-width: 300px; }
+      .captcha-box { width: 168px; font-size: 34px; }
     }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="topbar">
-      <h1>Consulta de Titulo - SENESCYT (Replica de visualizacion)</h1>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">Ministerio de Educacion,<br>Deporte y Cultura</div>
+      <div class="hero-right">EL NUEVO ECUADOR</div>
+    </div>
+  </header>
+
+  <main class="frame">
+    <nav class="nav">INICIO CONSULTA DE TITULOS ESTADO TITULOS EXTRANJEROS</nav>
+
+    <section class="container">
+      <h1>CONSULTA DE TITULOS REGISTRADOS</h1>
+      <div class="hr"></div>
+
+      <div class="search-grid">
+        <div class="search-card">
+          <p class="field-label">Apellidos</p>
+          <input class="input" value="" placeholder="Apellidos" />
+
+          <p class="field-label" style="margin-top:10px;">Identificacion(Cedula/Pasaporte/D.I. Pais de origen)</p>
+          <input class="input" value="1312149683" placeholder="Identificacion" />
+
+          <p class="field-label" style="margin-top:10px;">*Ingrese los caracteres</p>
+          <div class="captcha-row">
+            <div class="captcha-box">radt</div>
+            <input class="input" style="max-width: 190px;" />
+          </div>
+          <button class="btn" type="button">Buscar</button>
+        </div>
+
+        <div class="alerts">
+          <div class="alert">
+            <strong>ATENCION 1</strong>
+            Las instituciones de educacion superior nacionales son responsables del registro de los titulos.
+          </div>
+          <div class="alert">
+            <strong>ATENCION 2</strong>
+            El reconocimiento/registro del titulo no habilita el ejercicio de profesiones reguladas por leyes especificas.
+          </div>
+          <div class="alert">
+            <strong>ATENCION 3</strong>
+            La informacion visualizada fue reportada por las instituciones de educacion superior.
+          </div>
+        </div>
+      </div>
+
+      <section class="section">
+        <div class="section-title">Informacion Personal</div>
+        <div class="section-body">
+          <div class="personal">
+            <div>
+              <p>Identificacion: <span class="value">1312149683</span></p>
+              <p>Nombres: <span class="value">DAVALOS INIGUEZ RENATTA KARINA</span></p>
+              <p>Genero: <span class="value">FEMENINO</span></p>
+              <p>Nacionalidad: <span class="value">ECUADOR</span></p>
+            </div>
+            <button class="print-btn" type="button">Imprimir Informacion</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Titulo(s) de tercer nivel de grado</div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Titulo</th>
+                <th>Institucion de Educacion Superior</th>
+                <th>Tipo</th>
+                <th>Reconocido por</th>
+                <th>Numero de Registro</th>
+                <th>Fecha de Registro</th>
+                <th>Area o Campo de Conocimiento</th>
+                <th>Observacion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>INGENIERIA/BIOTECNOLOGIA</td>
+                <td>UNIVERSIDAD SAN FRANCISCO DE QUITO</td>
+                <td>Nacional</td>
+                <td></td>
+                <td>1038-2026-3288073</td>
+                <td>2026-02-03</td>
+                <td>CIENCIAS NATURALES, MATEMATICAS Y ESTADISTICA</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="viewer-wrap">
+        <div class="viewer-title">Documento PDF</div>
+        <div class="viewer">
+          <iframe src="Titulo_1312149683.pdf#view=FitH" title="Titulo 1312149683"></iframe>
+        </div>
+        <div class="actions">
+          <a class="link-btn" href="Titulo_1312149683.pdf" target="_blank" rel="noopener">Abrir PDF en nueva pestana</a>
+          <a class="link-btn" href="Titulo_1312149683.pdf" download>Descargar PDF</a>
+        </div>
+      </section>
     </section>
 
-    <section class="panel">
-      <div class="meta">
-        <div class="field">
-          <div class="label">Documento</div>
-          <div class="value">1312149683</div>
-        </div>
-        <div class="field">
-          <div class="label">Tipo</div>
-          <div class="value">Cedula</div>
-        </div>
-        <div class="field">
-          <div class="label">Estado</div>
-          <div class="value ok">Documento cargado</div>
-        </div>
-      </div>
-
-      <div class="actions">
-        <a class="btn primary" href="Titulo_1312149683.pdf" target="_blank" rel="noopener">Abrir PDF en nueva pestana</a>
-        <a class="btn ghost" href="Titulo_1312149683.pdf" download>Descargar PDF</a>
-      </div>
-
-      <div class="viewer">
-        <iframe src="Titulo_1312149683.pdf#view=FitH" title="Titulo 1312149683"></iframe>
-      </div>
-      <p class="note">
-        Esta pagina es una replica visual para exponer el documento en un enlace publico. No es un endpoint oficial de SENESCYT.
-      </p>
-    </section>
+    <footer class="foot">
+      Punto de Atencion al Usuario - Quito, Ecuador | Telefono: (593) 2-03961400
+    </footer>
   </main>
 </body>
 </html>
