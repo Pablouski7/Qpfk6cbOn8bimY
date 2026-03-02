@@ -1,257 +1,442 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <title>MINEDEC - Ministerio De Educacion, Deporte Y Cultura</title>
-
-  <link rel="stylesheet" href="https://www.senescyt.gob.ec/consulta-titulos-web/faces/javax.faces.resource/theme.css?ln=primefaces-bootstrap" />
-  <link rel="stylesheet" href="https://www.senescyt.gob.ec/consulta-titulos-web/faces/javax.faces.resource/components.css?ln=primefaces&amp;v=6.0" />
-  <link rel="stylesheet" href="https://www.senescyt.gob.ec/consulta-titulos-web/faces/javax.faces.resource/css/spacelab/core.css?ln=bsf" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="https://www.senescyt.gob.ec/consulta-titulos-web/faces/javax.faces.resource/css/bsf.css?ln=bsf" />
-  <link rel="stylesheet" href="https://www.senescyt.gob.ec/consulta-titulos-web/resources/css/main.css?1" />
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
   <style>
-    .mock-captcha {
-      width: 100% !important;
-      height: 33px;
+    html, body {
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+      font-size: 10px !important;
+      line-height: 1.5;
+      background-color: #d3d3e7;
+      margin: 0;
+      color: #333;
+    }
+
+    p { font-size: 14px !important; }
+
+    header {
+      width: 100%;
+      background-color: #32266b;
+    }
+
+    .logo {
+      width: 100%;
+      height: 100px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: center;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .img_izq { margin: 100px; }
+    .img_der { margin: 100px; }
+    .img_presidencia { margin: 15px; }
+
+    .contenedor-externo {
+      min-height: 100%;
+      width: 100%;
+      min-width: 370px;
+    }
+
+    .contenedor-interno {
+      padding-top: 10px;
+      padding-left: 10%;
+      min-width: 380px;
+      width: 90%;
+    }
+
+    nav.navbar {
+      margin-bottom: 0;
+      background: #32266b;
+      color: #fff;
+    }
+
+    nav.navbar-inverse { border-color: #32266b; }
+
+    .navbar-inverse .navbar-nav > li > a {
+      color: #f5f5f5 !important;
+      font-size: 14px !important;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+
+    .navbar-inverse .navbar-nav > li > a:hover {
+      background: #241b4b !important;
+    }
+
+    .navbar-custom { background-color: #32266b; }
+
+    .menu-bar {
+      height: 53px;
+      width: 100%;
+      float: left;
+      border-radius: 0 0 8px 8px;
+    }
+
+    .contenido main {
+      width: 100%;
+      float: left;
+      background: #fff;
+      border: 3px solid #c2c2c0;
+      border-top: none;
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      padding: 20px;
+    }
+
+    .tutilo-consulta {
+      border-bottom: 1px solid #888;
+      margin-bottom: 8px;
+    }
+
+    .tutilo-consulta h3 {
+      margin: 10px 0;
+      font-size: 42px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+      color: #1d2d42;
+    }
+
+    .company-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .company-card { border: 1px solid #d9d9d9; padding: 10px; }
+
+    .company-card label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 4px;
+      font-weight: 700;
+      color: #2f2f2f;
+    }
+
+    .form-control {
+      font-size: 14px;
+      height: 34px;
+      border-radius: 2px;
+    }
+
+    .captcha-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .captcha-art {
       background: #000;
-      color: #f5d9c4;
+      color: #f8d8ba;
+      font-size: 48px;
       font-family: "Courier New", monospace;
       font-weight: 700;
-      font-size: 28px;
       letter-spacing: 1px;
-      line-height: 33px;
-      text-align: center;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-transform: lowercase;
-      user-select: none;
     }
 
-    .pdf-panel {
-      margin-top: 20px;
+    .btn-primary {
+      color: #fff;
+      background-color: #32266b !important;
+      border-color: #32266b !important;
+      font-size: 14px;
     }
 
-    .pdf-panel iframe {
+    .btn-primary:hover {
+      color: #fff;
+      background-color: #241b4b !important;
+      border-color: #241b4b !important;
+    }
+
+    .msg-amarillo {
+      background: #fff6bf;
+      border: 2px solid #44779f;
+      padding: 2px 10px;
+      margin-top: 24px;
+      border-radius: 5px;
+      display: block;
       width: 100%;
-      height: 72vh;
-      min-height: 540px;
-      border: 1px solid #bfc7cf;
+      float: left;
+    }
+
+    .msg-amarillo h4 {
+      font-weight: bold;
+      color: #44779f;
+      font-size: 90%;
+      margin-bottom: 5px;
+      margin-top: 7px;
+    }
+
+    .msg-amarillo p {
+      font-weight: bold;
+      line-height: 150%;
+      text-align: justify;
+      font-size: 85% !important;
+      margin-bottom: 0;
+    }
+
+    .msg-amarillo span {
+      font-style: italic;
+      font-size: 80%;
+    }
+
+    .result-wrap { margin-top: 25px; }
+
+    .panel-primary > .panel-heading {
+      color: #f5f5f5;
+      background-color: #32266b;
+      border-color: #446e9b;
+      font-size: 30px;
+      padding: 10px 14px;
+    }
+
+    .informacion-personal { font-size: 80% !important; }
+
+    .informacion-personal td {
+      font-size: 14px;
+      vertical-align: middle !important;
+      border: none !important;
+      padding: 8px 10px !important;
+    }
+
+    .informacion-personal .negrita { font-weight: bold; }
+
+    .print-zone { text-align: center; }
+
+    .print-zone .btn {
+      font-size: 14px;
+      padding: 6px 14px;
+      min-width: 130px;
+    }
+
+    table.titulos {
+      width: 100%;
+      font-size: 80% !important;
+      border-collapse: collapse;
       background: #fff;
     }
 
-    .pdf-actions {
-      margin-top: 12px;
+    table.titulos th,
+    table.titulos td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      font-size: 12px;
+    }
+
+    .azul th {
+      background: #eaf0f8 !important;
+      color: #333 !important;
+      text-align: center;
+      border-radius: 0 !important;
+      font-weight: 700;
+    }
+
+    .pdf-area { margin-top: 16px; }
+
+    .pdf-area iframe {
+      width: 100%;
+      height: 72vh;
+      border: 1px solid #ccc;
+      background: #fff;
+    }
+
+    .pdf-links {
+      margin-top: 10px;
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
     }
 
-    .pdf-actions a {
-      font-size: 12px !important;
+    .pdf-links a {
+      border: 1px solid #44779f;
+      color: #1d2d42;
+      background: #fff;
+      padding: 6px 12px;
       text-decoration: none;
-      border: 1px solid #4679a0;
-      padding: 7px 12px;
       border-radius: 2px;
-      color: #2b2b2b;
-      background: #f8f8f8;
+      font-size: 12px !important;
     }
 
-    .pdf-actions a:hover {
-      background: #ececec;
+    footer#footer-bot .container-fluid {
+      background-image: url(https://www.senescyt.gob.ec/consulta-titulos-web/resources/images/bandera.png);
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      background-size: 100% 5px;
+      background-color: #ffffff;
+    }
+
+    .styles {
+      display: flex;
+      flex-direction: row;
+      margin-top: 0;
+      align-items: flex-end;
+      text-align: initial;
+      width: 100%;
+      border: 3px solid #c2c2c0;
+      border-top: none;
+    }
+
+    .styles2 {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: space-between;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .texto h3 {
+      font-size: 10px;
+      margin: 0 0 5px 0;
+      text-align: end;
+    }
+
+    @media (max-width: 1200px) {
+      .img_izq, .img_der { margin: 24px; }
+      .contenedor-interno { padding-left: 2%; width: 98%; }
+      .company-grid { grid-template-columns: 1fr; }
+      .navbar-inverse .navbar-nav > li > a { font-size: 16px !important; }
+      .tutilo-consulta h3 { font-size: 30px; }
+      .panel-primary > .panel-heading { font-size: 25px; }
+      .informacion-personal td, table.titulos th, table.titulos td { font-size: 14px; }
+      .company-card label { font-size: 16px; }
+      .form-control { font-size: 15px; }
+      .btn-primary { font-size: 16px; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">
-      <img src="https://www.senescyt.gob.ec/consulta-titulos-web/resources/images/senescyt.png" alt="" title="" width="14%" class="img_izq" />
-      <img src="https://www.senescyt.gob.ec/consulta-titulos-web/resources/images/logo-der.png" alt="" title="" width="12%" class="img_der" />
+      <img src="https://www.senescyt.gob.ec/consulta-titulos-web/resources/images/senescyt.png" alt="Ministerio" title="Ministerio" width="14%" class="img_izq" />
+      <img src="https://www.senescyt.gob.ec/consulta-titulos-web/resources/images/logo-der.png" alt="Ecuador" title="Ecuador" width="12%" class="img_der" />
     </div>
   </header>
 
   <div class="contenedor-externo">
     <div class="contenedor-interno">
       <div class="menu-bar">
-        <div class="navbar-custom navbar navbar-inverse" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu_inner">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-            </div>
-            <div id="menu_inner" class="collapse navbar-collapse navbar-ex1-collapse">
-              <ul class="nav navbar-nav">
-                <li><a href="#" role="menuitem" tabindex="-1">INICIO</a></li>
-                <li><a href="#" role="menuitem" tabindex="-1">CONSULTA DE TITULOS</a></li>
-                <li><a href="#" role="menuitem" tabindex="-1">ESTADO TITULOS EXTRANJEROS</a></li>
-              </ul>
-            </div>
+        <nav class="navbar-custom navbar navbar-inverse" role="navigation">
+          <div class="container-fluid">
+            <ul class="nav navbar-nav">
+              <li><a href="#">INICIO</a></li>
+              <li><a href="#">CONSULTA DE TITULOS</a></li>
+              <li><a href="#">ESTADO TITULOS EXTRANJEROS</a></li>
+            </ul>
           </div>
-        </div>
+        </nav>
       </div>
 
       <div class="contenido">
         <main>
-          <div>
-            <div class="tutilo-consulta">
-              <h3>CONSULTA DE TITULOS REGISTRADOS</h3>
+          <div class="tutilo-consulta">
+            <h3>CONSULTA DE TITULOS REGISTRADOS</h3>
+          </div>
+
+          <div class="company-grid">
+            <div class="company-card">
+              <label>Apellidos</label>
+              <input class="form-control" placeholder="Apellidos" />
+
+              <label style="margin-top: 8px;">Identificacion(Cedula/Pasaporte/D.I. Pais de origen)</label>
+              <input class="form-control" value="1312149683" placeholder="Identificacion (Cedula/Pasaporte/D.I. Pais de origen)" />
+
+              <label style="margin-top: 8px;">*Ingrese los caracteres</label>
+              <div class="captcha-row">
+                <div class="captcha-art">radt</div>
+                <input class="form-control" />
+              </div>
+              <button class="btn btn-primary" style="margin-top: 8px; width: 140px;">Buscar</button>
             </div>
-            <br />
 
-            <div class="ui-panelgrid ui-widget companyHeaderGrid">
-              <div class="ui-panelgrid-content ui-widget-content ui-grid ui-grid-responsive">
-                <div class="ui-grid-row">
-                  <div class="ui-panelgrid-cell ui-grid-col-6">
-                    <table class="ui-panelgrid ui-widget companyHeaderGrid" role="grid">
-                      <tbody>
-                        <tr class="ui-widget-content" role="row">
-                          <td role="gridcell" class="ui-panelgrid-cell"><label>Apellidos</label></td>
-                        </tr>
-                        <tr class="ui-widget-content" role="row">
-                          <td role="gridcell" class="ui-panelgrid-cell">
-                            <input type="text" placeholder="Apellidos" style="width:100%" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" />
-                          </td>
-                        </tr>
-                        <tr class="ui-widget-content" role="row">
-                          <td role="gridcell" class="ui-panelgrid-cell"><label>Identificacion(Cedula/Pasaporte/D.I. Pais de origen)</label></td>
-                        </tr>
-                        <tr class="ui-widget-content" role="row">
-                          <td role="gridcell" class="ui-panelgrid-cell">
-                            <input type="text" value="1312149683" placeholder="Identificacion (Cedula/Pasaporte/D.I. Pais de origen)" style="width:100%" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" />
-                          </td>
-                        </tr>
-                        <tr class="ui-widget-content" role="row">
-                          <td role="gridcell" class="ui-panelgrid-cell"><label>*Ingrese los caracteres</label></td>
-                        </tr>
-                        <tr class="ui-widget-content" role="row">
-                          <td role="gridcell" class="ui-panelgrid-cell">
-                            <div class="ui-panelgrid ui-widget companyHeaderGrid">
-                              <div class="ui-panelgrid-content ui-widget-content ui-grid ui-grid-responsive">
-                                <div class="ui-grid-row">
-                                  <div class="ui-panelgrid-cell gri-height ui-grid-col-6">
-                                    <div class="mock-captcha">radt</div>
-                                  </div>
-                                  <div class="ui-panelgrid-cell ui-grid-col-6">
-                                    <input type="text" style="width:100%" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" />
-                                  </div>
-                                </div>
-                                <div class="ui-grid-row">
-                                  <div class="ui-panelgrid-cell gri-height ui-grid-col-6">
-                                    <button type="button" class="btn btn-primary" style="width:100% !important;">Buscar</button>
-                                  </div>
-                                  <div class="ui-panelgrid-cell ui-grid-col-6"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+            <div>
+              <div class="msg-amarillo">
+                <h4>ATENCION 1</h4>
+                <p>Las instituciones de educacion superior nacionales seran responsables del registro de los titulos que emitan, previa verificacion del cumplimiento de los requisitos legales y academicos.</p>
+                <span>(Reglamento General a la Ley Organica de Educacion Superior, Art. 56)</span>
+              </div>
+              <div class="msg-amarillo">
+                <h4>ATENCION 2</h4>
+                <p>El reconocimiento/registro del titulo no habilita al ejercicio de profesiones reguladas por leyes especificas, y de manera especial al ejercicio de las profesiones que pongan en riesgo la vida y seguridad ciudadana.</p>
+                <span>Resolucion RPC-SO-16-No.256-2016</span>
+              </div>
+              <div class="msg-amarillo">
+                <h4>ATENCION 3</h4>
+                <p>La informacion visualizada en el area o campo de conocimiento fue reportada por las instituciones de educacion superior al crear la carrera o programa.</p>
+              </div>
+            </div>
+          </div>
 
-                  <div class="ui-panelgrid-cell ui-grid-col-6">
-                    <table class="ui-panelgrid ui-widget companyHeaderGrid" role="grid">
-                      <tbody>
-                        <tr class="ui-widget-content" role="row">
-                          <td role="gridcell" class="ui-panelgrid-cell">
-                            <div class="msg-amarillo">
-                              <h4>ATENCION 1</h4>
-                              <p>Las instituciones de educacion superior nacionales seran responsables del registro de los titulos que emitan, previa verificacion del cumplimiento de los requisitos legales y academicos. La informacion registrada sera parte del Sistema Nacional de Informacion de la Educacion Superior y este sera el unico medio oficial a traves del cual se verificara el reconocimiento y validez del titulo en el Ecuador.</p>
-                              <span>(Reglamento General a la Ley Organica de Educacion Superior, Art. 56)</span>
-                            </div>
-                            <div class="msg-amarillo">
-                              <h4>ATENCION 2</h4>
-                              <p>El reconocimiento/registro del titulo no habilita al ejercicio de las profesiones reguladas por leyes especificas, y de manera especial al ejercicio de las profesiones que pongan en riesgo de modo directo la vida, salud y seguridad ciudadana conforme el articulo 104 de la Ley Organica de Educacion Superior.</p>
-                              <span>Resolucion RPC-SO-16-No.256-2016</span>
-                            </div>
-                            <div class="msg-amarillo">
-                              <h4>ATENCION 3</h4>
-                              <p>La informacion que se visualiza en el area o campo de conocimiento, fue reportada por las instituciones de educacion superior el momento de crear la carrera o programa, con base en la autonomia responsable, de conformidad con lo que establece la Ley Organica de Educacion Superior en el Art. 17.</p>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+          <div class="result-wrap">
+            <div class="panel panel-primary">
+              <div class="panel-heading">Informacion Personal</div>
+              <div class="panel-body">
+                <table class="table informacion-personal" style="margin-bottom: 0;">
+                  <tbody>
+                    <tr>
+                      <td><span class="negrita">Identificacion:</span> 1312149683</td>
+                      <td class="print-zone" rowspan="4"><button class="btn btn-primary">Imprimir Informacion</button></td>
+                    </tr>
+                    <tr><td><span class="negrita">Nombres:</span> DAVALOS INIGUEZ RENATTA KARINA</td></tr>
+                    <tr><td><span class="negrita">Genero:</span> FEMENINO</td></tr>
+                    <tr><td><span class="negrita">Nacionalidad:</span> ECUADOR</td></tr>
+                  </tbody>
+                </table>
               </div>
             </div>
 
-            <br />
-
-            <div id="resultado-busqueda">
-              <div class="panel panel-primary">
-                <div class="panel-heading">Informacion Personal</div>
-                <div class="panel-body">
-                  <table class="table informacion-personal">
-                    <tbody>
-                      <tr>
-                        <td class="negrita">Identificacion:</td>
-                        <td class="negrita">1312149683</td>
-                        <td rowspan="4" class="TAR"><button type="button" class="btn btn-primary">Imprimir Informacion</button></td>
-                      </tr>
-                      <tr>
-                        <td class="negrita">Nombres:</td>
-                        <td class="negrita">DAVALOS INIGUEZ RENATTA KARINA</td>
-                      </tr>
-                      <tr>
-                        <td class="negrita">Genero:</td>
-                        <td class="negrita">FEMENINO</td>
-                      </tr>
-                      <tr>
-                        <td class="negrita">Nacionalidad:</td>
-                        <td class="negrita">ECUADOR</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+            <div class="panel panel-primary">
+              <div class="panel-heading">Titulo(s) de tercer nivel de grado</div>
+              <div class="panel-body">
+                <table class="titulos">
+                  <thead class="azul">
+                    <tr>
+                      <th>Titulo</th>
+                      <th>Institucion de Educacion Superior</th>
+                      <th>Tipo</th>
+                      <th>Reconocido Por</th>
+                      <th>Numero de Registro</th>
+                      <th>Fecha de Registro</th>
+                      <th>Area o Campo de Conocimiento</th>
+                      <th>Observacion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>INGENIERIA/BIOTECNOLOGIA</td>
+                      <td>UNIVERSIDAD SAN FRANCISCO DE QUITO</td>
+                      <td>Nacional</td>
+                      <td></td>
+                      <td>1038-2026-3288073</td>
+                      <td>2026-02-03</td>
+                      <td>CIENCIAS NATURALES, MATEMATICAS Y ESTADISTICA</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
+            </div>
 
-              <div class="panel panel-primary">
-                <div class="panel-heading">Titulo(s) de tercer nivel de grado</div>
-                <div class="panel-body">
-                  <table class="table table-hover titulos">
-                    <thead>
-                      <tr>
-                        <th>Titulo</th>
-                        <th>Institucion de Educacion Superior</th>
-                        <th>Tipo</th>
-                        <th>Reconocido Por</th>
-                        <th>Numero de Registro</th>
-                        <th>Fecha de Registro</th>
-                        <th>Area o Campo de Conocimiento</th>
-                        <th>Observacion</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>INGENIERIA/BIOTECNOLOGIA</td>
-                        <td>UNIVERSIDAD SAN FRANCISCO DE QUITO</td>
-                        <td>Nacional</td>
-                        <td></td>
-                        <td>1038-2026-3288073</td>
-                        <td>2026-02-03</td>
-                        <td>CIENCIAS NATURALES, MATEMATICAS Y ESTADISTICA</td>
-                        <td></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <div class="panel panel-primary pdf-panel">
-                <div class="panel-heading">Documento PDF</div>
-                <div class="panel-body">
-                  <iframe src="Titulo_1312149683.pdf#view=FitH" title="Titulo_1312149683"></iframe>
-                  <div class="pdf-actions">
-                    <a href="Titulo_1312149683.pdf" target="_blank" rel="noopener">Abrir PDF en nueva pestana</a>
-                    <a href="Titulo_1312149683.pdf" download>Descargar PDF</a>
-                  </div>
+            <div class="panel panel-primary pdf-area">
+              <div class="panel-heading">Documento PDF</div>
+              <div class="panel-body">
+                <iframe src="Titulo_1312149683.pdf#view=FitH" title="Titulo 1312149683"></iframe>
+                <div class="pdf-links">
+                  <a href="Titulo_1312149683.pdf" target="_blank" rel="noopener">Abrir PDF en nueva pestana</a>
+                  <a href="Titulo_1312149683.pdf" download>Descargar PDF</a>
                 </div>
               </div>
             </div>
@@ -262,7 +447,7 @@
           <div class="container-fluid styles">
             <div class="styles2">
               <div>
-                <img src="https://www.senescyt.gob.ec/consulta-titulos-web/resources/images/logo_presidencia.png" alt="" title="" width="100%" class="img_presidencia" />
+                <img src="https://www.senescyt.gob.ec/consulta-titulos-web/resources/images/logo_presidencia.png" alt="Presidencia" title="Presidencia" width="100%" class="img_presidencia" />
               </div>
               <div class="texto" style="margin: 10px;">
                 <h3>Punto de Atencion al Usuario: Whymper E7-37 y Alpallana, edificio Delfos, Quito</h3>
